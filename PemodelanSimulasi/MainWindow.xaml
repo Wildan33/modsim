@@ -1,0 +1,23 @@
+﻿<Window x:Class="PemodelanSimulasi.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PemodelanSimulasi"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="800">
+    <Grid>
+        <Label x:Name="TitleLbl" FontSize="35" Content="Aplikasi Pemodelan dan Simulasi" HorizontalAlignment="Center" Margin="153,34,127.6,0" VerticalAlignment="Top" Width="513"/>
+        <Slider Minimum="1" Maximum="10" TickPlacement="BottomRight" TickFrequency="1" Margin="342,151,287.6,193.4" Name="slXValue" IsSnapToTickEnabled="true"/>
+        <Slider Minimum="1" Maximum="10" TickPlacement="BottomRight"  TickFrequency="1"  Margin="343,194,287.6,151.4" Name="slYValue" IsSnapToTickEnabled="true"/>
+        <Slider Minimum="10" Maximum="100" TickPlacement="BottomRight" TickFrequency="1" Margin="343,236,286.6,108.4" x:Name="slGenoValueS" IsSnapToTickEnabled="true"/>
+        <TextBox x:Name="txtBoxEduLvl" Margin="524,151,224.6,193.4" TextWrapping="Wrap" Text="{Binding ElementName=slXValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center"/>
+        <TextBox x:Name="txtBoxResLvl" Margin="524,193,224.6,151.4" TextWrapping="Wrap" Text="{Binding Value, ElementName=slYValue, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center"/>
+        <TextBox x:Name="txtBoxGenoLvl" Margin="524,237,224.6,108.4" TextWrapping="Wrap" Text="{Binding Value, ElementName=slGenoValueS, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center"/>
+        <Label x:Name="EducationLbl" FontSize="15" Content="Education Level" HorizontalAlignment="Left" Margin="200,147,0,0" VerticalAlignment="Top" Width="137"/>
+        <Label x:Name="ResourceLbl"  FontSize="15" Content="Research Level" HorizontalAlignment="Left" Margin="200,189,0,0" VerticalAlignment="Top" Width="119"/>
+        <Label x:Name="GenocideLbl"  FontSize="15" Content="Genocide Interval" HorizontalAlignment="Left" Margin="200,232,0,0" VerticalAlignment="Top" Width="138"/>
+        <Button Content="Create Model" FontSize="14" HorizontalAlignment="Left" Margin="342,299,0,0" VerticalAlignment="Top" Width="125" Click="Button_Click" Height="44" IsDefault="true"/>
+
+    </Grid>
+</Window>
