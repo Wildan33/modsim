@@ -22,12 +22,13 @@ namespace PemodelanSimulasi
     /// </summary>
     public partial class ChartDisplayer : Window
     {
+        //initialize variable for plotting
         ObservableDataSource<Point> dataPopulation = new ObservableDataSource<Point>();
         ObservableDataSource<Point> dataResources = new ObservableDataSource<Point>();
-        
+
+        //initial value
         private double initialResource = 2000;
         private double initialPopulation = 1;
-        ViewportAxesRangeRestriction restr = new ViewportAxesRangeRestriction();
         
         public ChartDisplayer()
         {
@@ -41,14 +42,8 @@ namespace PemodelanSimulasi
             plotter.AddLineGraph(dataPopulation, new Pen(Brushes.Green, 2), new PenDescription("Population"));
             plotter.AddLineGraph(dataResources, new Pen(Brushes.Blue, 2), new PenDescription("Resources"));
 
-            //apply restriction for Y axis
-            //restr.YRange = new DisplayRange(0, 1200000);
-            //plotter.Viewport.Restrictions.Add(restr);
-
             //esc to close hehe
             this.PreviewKeyDown += new KeyEventHandler(HandleEsc);
-
-
         }
 
         private void HandleEsc(object sender, KeyEventArgs e)
@@ -66,9 +61,13 @@ namespace PemodelanSimulasi
                 double populationAtTime;
                 Point pPopulationLoop;
 
+                //get education factor from Education Level slider
                 double xConstanta = ((MainWindow)Application.Current.MainWindow).educationConst;
+
+                //get genocide interval from Genocide Interval slider
                 int genocideInterval = ((MainWindow)Application.Current.MainWindow).genocideInterval;
-                Console.WriteLine(xConstanta);
+
+                //initial point plot
                 Point pPopulation = new Point(2000, initialPopulation);
                 dataPopulation.Collection.Add(pPopulation);
 
@@ -76,14 +75,12 @@ namespace PemodelanSimulasi
 
                 if (genocideInterval == 100)
                 {
+                    //no genocide condition
                     for (int i = 2001; i <= 2100; i++)
                     {
                         populationAtTime = xConstanta * temp;
-                        Console.WriteLine(populationAtTime);
-
                         pPopulationLoop = new Point(i, populationAtTime);
                         dataPopulation.Collection.Add(pPopulationLoop);
-                        Console.WriteLine(populationAtTime);
                         temp = populationAtTime;
                     }
 
@@ -93,14 +90,13 @@ namespace PemodelanSimulasi
                 {
                     for (int i = 2001; i <= 2100; i++)
                     {
+                        //with genocide condition
                         populationAtTime = xConstanta * temp;
-                        Console.WriteLine(populationAtTime);
 
                         if (i % genocideInterval == 0)
                         {
                             pPopulationLoop = new Point(i, populationAtTime / 2);
                             dataPopulation.Collection.Add(pPopulationLoop);
-                            Console.WriteLine(populationAtTime / 2);
                             temp = populationAtTime / 2;
                         }
 
@@ -108,7 +104,6 @@ namespace PemodelanSimulasi
                         {
                             pPopulationLoop = new Point(i, populationAtTime);
                             dataPopulation.Collection.Add(pPopulationLoop);
-                            Console.WriteLine(populationAtTime);
                             temp = populationAtTime;
                         }
                     }
@@ -127,16 +122,20 @@ namespace PemodelanSimulasi
         {
             try
             {
+                //get resource factor from Research Level slider
                 double yConstanta = ((MainWindow)Application.Current.MainWindow).resourceConst;
+
+                //initial point for plot
                 Point pResource = new Point(2000, initialResource);
                 dataResources.Collection.Add(pResource);
+
+
                 double temp = initialResource;
                 for (int i = 2001; i <= 2100; i++)
                 {
                     double resourceAtTime = temp + (yConstanta * i);
                     Point pResourceLoop = new Point(i, resourceAtTime);
                     dataResources.Collection.Add(pResourceLoop);
-                    Console.WriteLine(resourceAtTime);
                     temp = resourceAtTime;
                 }
             }
@@ -144,54 +143,8 @@ namespace PemodelanSimulasi
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message, "Error Messaage");
-            }
-
-
-            
-        }
-
-        private void tesBtn_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show(((MainWindow)Application.Current.MainWindow).educationConst.ToString() + " + " + ((MainWindow)Application.Current.MainWindow).resourceConst.ToString(), "balala");
+            }            
         }
     }
-
-    public class DisplayRange
-    {
-        public double Start { get; set; }
-        public double End { get; set; }
-
-        public DisplayRange(double start, double end)
-        {
-            Start = start;
-            End = end;
-        }
-    }
-
-    public class ViewportAxesRangeRestriction : IViewportRestriction
-    {
-        public DisplayRange XRange = null;
-        public DisplayRange YRange = null;
-
-        public Rect Apply (Rect oldVisible, Rect newVisible, Viewport2D viewport)
-        {
-            if (XRange != null)
-            {
-                newVisible.X = XRange.Start;
-                newVisible.Width = XRange.End - XRange.Start;
-            }
-
-            if (YRange != null)
-            {
-                newVisible.Y = YRange.Start;
-                newVisible.Height = YRange.End - YRange.Start;
-            }
-
-            return newVisible;
-        }
-
-        public event EventHandler Changed;
-    }
-
 
 }

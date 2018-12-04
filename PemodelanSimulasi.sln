@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PemodelanSimulasi", "PemodelanSimulasi\PemodelanSimulasi.csproj", "{46A65CBF-B022-46A7-A78D-13243C49C1C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppHelixToolkit", "..\WpfAppHelixToolkit\WpfAppHelixToolkit\WpfAppHelixToolkit.csproj", "{27AB07C6-194B-4CEF-AC86-837DADBB2FD8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,11 +17,15 @@ Global
 		{46A65CBF-B022-46A7-A78D-13243C49C1C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46A65CBF-B022-46A7-A78D-13243C49C1C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46A65CBF-B022-46A7-A78D-13243C49C1C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27AB07C6-194B-4CEF-AC86-837DADBB2FD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27AB07C6-194B-4CEF-AC86-837DADBB2FD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27AB07C6-194B-4CEF-AC86-837DADBB2FD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27AB07C6-194B-4CEF-AC86-837DADBB2FD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C0BC6B3A-E370-4419-8427-CA3AFEE8E901}
+		SolutionGuid = {1855578B-2B6A-4CA4-89F2-4C1714DBE52A}
 	EndGlobalSection
 EndGlobal
